@@ -2,7 +2,7 @@ import Animations from "./Animations"
 import Emission from "./Emission"
 import Primitives from "./Primitives"
 
-export function MyRoom(props) {
+const MyRoom = props => {
   return <group position={[0, -1.5, 0]}>
     {/* Emissions */}
     <Emission />
@@ -14,3 +14,5 @@ export function MyRoom(props) {
     <Animations {...props} />
   </group>
 }
+
+export default MyRoom

@@ -3,6 +3,7 @@ import { useFrame } from "@react-three/fiber"
 import { useEffect, useRef } from "react"
 import * as THREE from "three"
 import Frames from "./Frames"
+import gsap from "gsap"
 
 const material = new THREE.MeshBasicMaterial({ side: THREE.DoubleSide })
 
@@ -17,13 +18,11 @@ const Animations = props => {
   const whiteKeys = useRef()
   // const [beethoven] = useState(() => new Audio("./songs/song.mp3"))
 
-  let index = 0
-
   const images = [
-    { position: nodes.Frame000.position, scale: [0.3, 0.4, 0.01], rotation: [0, Math.PI / 2, 0], url: pexel(327482) },
-    { position: nodes.Frame001.position, scale: [0.23, 0.31, 0.01], rotation: [0, Math.PI / 2, 0], url: pexel(325185) },
-    { position: nodes.Frame002.position, scale: [0.28, 0.375, 0.01], rotation: [0, Math.PI / 2, 0], url: pexel(358574) },
-    { position: nodes.Frame003.position, scale: [0.34, 0.26, 0.01], rotation: [0, Math.PI / 2, 0], url: pexel(358579) },
+    { position: nodes.Frame000.position, scale: [0.33, 0.45, 0.01], rotation: [0, Math.PI / 2, 0], url: pexel(327482) },
+    { position: nodes.Frame001.position, scale: [0.26, 0.36, 0.01], rotation: [0, Math.PI / 2, 0], url: pexel(325185) },
+    { position: nodes.Frame002.position, scale: [0.33, 0.44, 0.01], rotation: [0, Math.PI / 2, 0], url: pexel(358574) },
+    { position: nodes.Frame003.position, scale: [0.39, 0.31, 0.01], rotation: [0, Math.PI / 2, 0], url: pexel(358579) },
   ]
 
   // Fixing the encoding and updating the material
@@ -36,9 +35,10 @@ const Animations = props => {
 
     // Piano animation
     const intervalId = setInterval(() => {
-      // eslint-disable-next-line
-      index = Math.round(Math.random() * (whiteKeys.current.children.length - 1))
-    }, 1000)
+      const index = Math.round(Math.random() * (whiteKeys.current.children.length - 1))
+      const key = whiteKeys.current.children[index].position
+      gsap.fromTo(key, { y: 0 }, { y: -0.015, yoyo: true, duration: 0.1, repeat: 1, ease: "power3" })
+    }, 150)
 
     return () => {
       clearInterval(intervalId)
@@ -50,10 +50,10 @@ const Animations = props => {
     const time = state.clock.elapsedTime
 
     // Spinning chair
-    chair.current.rotation.y = Math.sin(time / 4)
+    chair.current.rotation.y = Math.sin(time / 4) - 0.5
 
     // Piano pressing
-    whiteKeys.current.children[index].position.y = -Math.abs(Math.sin(time * 5) / 100)
+    // whiteKeys.current.children[index].position.y = -Math.abs(Math.sin(time * 5) / 100)
   })
 
   // Playing music on demand

@@ -20,6 +20,7 @@ export default function Frames({ images, q = new THREE.Quaternion(), p = new THR
   const state = useThree()
 
   useEffect(() => {
+    const duration = 2
     clicked.current = ref.current.getObjectByName(params?.id)
 
     // Frame was clicked
@@ -35,19 +36,22 @@ export default function Frames({ images, q = new THREE.Quaternion(), p = new THR
       // Snapping to the selected frame postion and rotation
       gsap.to(state.camera.position, { ...p, duration: 2, ease: "power2.inOut" })
       gsap.to(state.camera.quaternion, { ...q, duration: 2, ease: "power2.inOut" })
-    } else {
-      const duration = 2
-      const position = { x: 4, y: 1.5, z: 4 }
-      const quaternion = { _x: -0.10669003326258619, _y: 0.380123185292065, _z: 0.04419245874739983, _w: 0.9176985493045644 }
+    } else { // Frame was not clicked
+      // Making sure we snap back to default, if we were just on a frame
+      if (!props.orbit.current.enabled) {
+        // Default camera position and rotation
+        const position = JSON.parse(localStorage.getItem("camera-position"))
+        const quaternion = JSON.parse(localStorage.getItem("camera-quaternion"))
 
-      // Snapping back to original position
-      gsap.to(state.camera.position, { ...position, duration, ease: "power2.inOut" })
-      gsap.to(state.camera.quaternion, { ...quaternion, duration, ease: "power2.inOut" })
+        // Snapping back to original camera position
+        gsap.to(state.camera.position, { ...position, duration, ease: "power2.inOut" })
+        gsap.to(state.camera.quaternion, { ...quaternion, duration, ease: "power2.inOut" })
 
-      // Enabling orbit controls
-      setTimeout(() => {
-        props.orbit.current.enabled = true
-      }, (duration * 1000) + 50)
+        // Enabling orbit controls
+        setTimeout(() => {
+          props.orbit.current.enabled = true
+        }, duration * 1000)
+      }
     }
   })
 

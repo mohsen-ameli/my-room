@@ -1,9 +1,12 @@
 import { Canvas } from '@react-three/fiber'
-import { useState } from 'react'
 import Experience from './Experience'
 
 const App = () => {
-  const [camera, setCamera] = useState(null)
+
+  const setCamera = (camera) => {
+    localStorage.setItem("camera-position", JSON.stringify(camera.position))
+    localStorage.setItem("camera-quaternion", JSON.stringify(camera.quaternion))
+  }
 
   return <Canvas
     camera={{
@@ -14,7 +17,7 @@ const App = () => {
     }}
     onCreated={({ camera }) => setCamera(camera)}
   >
-    <Experience camera={camera} />
+    <Experience />
   </Canvas>
 }
 
