@@ -1,7 +1,10 @@
 import { Canvas } from '@react-three/fiber'
+import { useState } from 'react';
 import Experience from './Experience';
 
 const App = () => {
+  const [camera, setCamera] = useState(null)
+
   return <Canvas
     camera={{
       fov: 45,
@@ -10,8 +13,9 @@ const App = () => {
       position: [3, 1, 3]
       // position: [0, 2, 15]
     }}
+    onCreated={({ camera }) => setCamera(camera)}
   >
-    <Experience />
+    <Experience camera={camera} />
   </Canvas>
 }
 

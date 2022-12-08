@@ -4,12 +4,12 @@ import { useRef } from 'react'
 import { Suspense, useState } from 'react'
 import { MyRoom } from './MyRoom/MyRoom'
 
-const Experience = () => {
+const Experience = ({ camera }) => {
   const orbit = useRef()
 
   return <>
     <OrbitControls
-      // makeDefault
+      makeDefault
       position={[0, 2, 0]}
       rotateSpeed={0.5}
       ref={orbit}
@@ -32,7 +32,7 @@ const Experience = () => {
       // config={{ mass: 1, tension: 170, friction: 26 }} // Spring config
       enabled={enabled}
     > */}
-    <MyRoom orbit={orbit} />
+    <MyRoom orbit={orbit} camera={camera} />
     {/* </PresentationControls> */}
 
     {/* <Environment preset="night" blur={0} background /> */}
