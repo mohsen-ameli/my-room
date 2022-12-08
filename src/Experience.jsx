@@ -16,7 +16,7 @@ const Experience = ({ camera }) => {
     />
 
     {/* Performances */}
-    <Perf position='top-left' />
+    {/* <Perf position='top-left' /> */}
 
     {/* Background color */}
     <color args={["black"]} attach="background" />
