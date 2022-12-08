@@ -37,7 +37,7 @@ export default function Frames({ images, q = new THREE.Quaternion(), p = new THR
       gsap.to(state.camera.quaternion, { ...q, duration: 2, ease: "power2.inOut" })
     } else {
       const duration = 2
-      const position = { x: 3, y: 1, z: 3 }
+      const position = { x: 4, y: 1.5, z: 4 }
       const quaternion = { _x: -0.10669003326258619, _y: 0.380123185292065, _z: 0.04419245874739983, _w: 0.9176985493045644 }
 
       // Snapping back to original position

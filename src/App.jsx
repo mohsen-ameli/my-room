@@ -10,7 +10,7 @@ const App = () => {
       fov: 45,
       far: 100,
       near: 0.1,
-      position: [3, 1, 3]
+      position: [4, 1.5, 4]
     }}
     onCreated={({ camera }) => setCamera(camera)}
   >
