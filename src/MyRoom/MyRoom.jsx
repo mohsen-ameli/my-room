@@ -1,4 +1,3 @@
-import { useEffect } from "react"
 import Animations from "./Animations"
 import Emission from "./Emission"
 import Primitives from "./Primitives"

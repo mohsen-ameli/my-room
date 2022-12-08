@@ -1,6 +1,6 @@
 import { Canvas } from '@react-three/fiber'
-import { useState } from 'react';
-import Experience from './Experience';
+import { useState } from 'react'
+import Experience from './Experience'
 
 const App = () => {
   const [camera, setCamera] = useState(null)
@@ -11,7 +11,6 @@ const App = () => {
       far: 100,
       near: 0.1,
       position: [3, 1, 3]
-      // position: [0, 2, 15]
     }}
     onCreated={({ camera }) => setCamera(camera)}
   >
@@ -19,4 +18,4 @@ const App = () => {
   </Canvas>
 }
 
-export default App;
+export default App

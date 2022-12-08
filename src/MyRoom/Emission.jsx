@@ -1,4 +1,4 @@
-import { useGLTF } from "@react-three/drei";
+import { useGLTF } from "@react-three/drei"
 
 const Emission = () => {
   const emissionModel = useGLTF("./EmissionModel.glb")
@@ -38,4 +38,4 @@ const Emission = () => {
   </>
 }
 
-export default Emission;
+export default Emission

@@ -1,12 +1,16 @@
+/**
+ * Code bits and pieces taken partially from https://codesandbox.io/u/drcmda
+ * Appreciate your work drcmda :)
+ */
+
+
 import { Image, useCursor } from "@react-three/drei"
-import { useFrame, useThree } from "@react-three/fiber"
+import { useThree } from "@react-three/fiber"
 import { useEffect, useRef, useState } from "react"
 import * as THREE from "three"
 import { useRoute, useLocation } from 'wouter'
 import getUuid from 'uuid-by-string'
 import gsap from "gsap"
-
-
 
 export default function Frames({ images, q = new THREE.Quaternion(), p = new THREE.Vector3(), ...props }) {
   const ref = useRef()
@@ -20,7 +24,7 @@ export default function Frames({ images, q = new THREE.Quaternion(), p = new THR
 
     // Frame was clicked
     if (clicked.current) {
-      // Disabling controls
+      // Disabling orbit controls
       props.orbit.current.enabled = false
 
       // Setting the new position and rotation to go to
@@ -40,29 +44,18 @@ export default function Frames({ images, q = new THREE.Quaternion(), p = new THR
       gsap.to(state.camera.position, { ...position, duration, ease: "power2.inOut" })
       gsap.to(state.camera.quaternion, { ...quaternion, duration, ease: "power2.inOut" })
 
-      // Enabling controls
+      // Enabling orbit controls
       setTimeout(() => {
         props.orbit.current.enabled = true
       }, (duration * 1000) + 50)
     }
   })
 
-  // Camera animation when a frame is clicked on
-  // useFrame((state, delta) => {
-  //   if (clicked.current) {
-  //     gsap.to(state.camera.position, { ...p, duration: 2.5, ease: "power3" })
-  //     gsap.to(state.camera.quaternion, { ...q, duration: 2.5, ease: "power3" })
-  //   } else {
-  //     gsap.to(state.camera.position, { x: 3, y: 1, z: 3, duration: 2.5, ease: "power3" })
-  //     // gsap.to(state.camera.quaternion, { ...q, duration: 2.5, ease: "power3" })
-  //   }
-  // })
-
   return (
     <group
       ref={ref}
       onClick={e => { e.stopPropagation(); setLocation(clicked.current === e.object ? '/' : '/item/' + e.object.name) }}
-      onPointerMissed={() => { setLocation('/') }}
+      onPointerMissed={() => setLocation('/')}
     >
       {images.map(props => <Frame key={props.url} {...props} />)}
     </group>

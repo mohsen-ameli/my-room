@@ -31,4 +31,4 @@ const Primitives = () => {
   </>
 }
 
-export default Primitives;
+export default Primitives
