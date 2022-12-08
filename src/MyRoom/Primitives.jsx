@@ -3,7 +3,7 @@ import { DoubleSide } from "three"
 
 const Primitives = () => {
   const bigModel = useGLTF("./Big/BigModel.glb")
-  const smallModel = useGLTF("./small/SmallModel.glb")
+  const smallModel = useGLTF("./Small/SmallModel.glb")
 
   const bigTexture = useTexture("./Big/BigBaked.png")
   const smallTexture = useTexture("./Small/SmallBaked.png")
