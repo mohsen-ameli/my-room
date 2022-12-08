@@ -36,7 +36,7 @@ const Animations = props => {
 
     // Piano animation
     const intervalId = setInterval(() => {
-      index = Math.round(Math.random() * whiteKeys.current.children.length)
+      index = Math.round(Math.random() * (whiteKeys.current.children.length - 1))
     }, 1000)
 
     return () => {

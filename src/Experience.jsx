@@ -1,20 +1,25 @@
 import { Environment, OrbitControls, PresentationControls, Sparkles, Stage, useGLTF } from '@react-three/drei'
 import { Perf } from 'r3f-perf'
+import { useRef } from 'react'
 import { Suspense, useState } from 'react'
 import { MyRoom } from './MyRoom/MyRoom'
 
 const Experience = () => {
-  const [enabled, setEnabled] = useState(true)
+  const orbit = useRef()
 
   return <>
-    {/* Disable orbit controls when doing the frame gallery */}
-    {/* <OrbitControls /> */}
+    <OrbitControls
+      // makeDefault
+      position={[0, 2, 0]}
+      rotateSpeed={0.5}
+      ref={orbit}
+    />
 
     {/* <Perf position='top-left' /> */}
 
     {/* <Stage preset="rembrandt" intensity={10.5} environment="city"> */}{/* </Stage> */}
 
-    <PresentationControls
+    {/* <PresentationControls
       // enabled={true} // the controls can be disabled by setting this to false
       global // Spin globally or by dragging the model
       cursor={false} // Whether to toggle cursor style on drag
@@ -26,9 +31,9 @@ const Experience = () => {
       azimuth={[-Math.PI / 4, Math.PI / 4]} // Horizontal limits
       // config={{ mass: 1, tension: 170, friction: 26 }} // Spring config
       enabled={enabled}
-    >
-      <MyRoom enabled={enabled} setEnabled={setEnabled} />
-    </PresentationControls>
+    > */}
+    <MyRoom orbit={orbit} />
+    {/* </PresentationControls> */}
 
     {/* <Environment preset="night" blur={0} background /> */}
     <color args={["black"]} attach="background" />
