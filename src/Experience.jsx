@@ -5,11 +5,11 @@ import Controls from './Controls'
 import MyRoom from './MyRoom/MyRoom'
 
 const Experience = () => {
-  const ref = useRef()
+  const orbitRef = useRef()
 
   return <>
     {/* Controls */}
-    <Controls ref={ref} />
+    <Controls ref={orbitRef} />
 
     {/* Performances */}
     {/* <Perf position='top-left' /> */}
@@ -18,7 +18,7 @@ const Experience = () => {
     <Background />
 
     {/* My room model */}
-    <MyRoom orbit={ref} />
+    <MyRoom orbitControls={orbitRef} />
   </>
 }
 
