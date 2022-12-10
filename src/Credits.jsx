@@ -1,0 +1,6 @@
+const beethovenSong = "https://commons.wikimedia.org/wiki/File:Beethoven_Moonlight_3rd_movement.ogg"
+const beethovenImage = "https://upload.wikimedia.org/wikipedia/commons/6/6f/Beethoven.jpg"
+const mozartImage = "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcR3YkXFTfaTTY_wxj4_8xRwWpQB1Q8JLXVT-TXwDy0b7W2hZDdC"
+const mozartSong = "https://ia800404.us.archive.org/7/items/Mozart_20160424_2121/Mozart-Turkish_March.mp3"
+const javadImage = "https://upload.wikimedia.org/wikipedia/en/f/f0/Javad_Maroufi.jpg"
+const javadSong = "https://just-music.ir/download/?jp=1377&jc=11011&jt=8"

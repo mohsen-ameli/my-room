@@ -1,14 +1,9 @@
 import gsap from "gsap"
-import { useEffect, useRef, useState } from "react"
-import useAudio from "./useAudio"
+import { useEffect, useRef } from "react"
 
-const Piano = ({ nodes, material }) => {
+const Piano = ({ nodes, material, playPiano }) => {
   const whiteKeys = useRef()
   const blackKeys = useRef()
-  const [playPiano, setPlayPiano] = useState(false)
-  const [, toggle] = useAudio("./songs/Beethoven_3rd.mp3")
-
-  const togglePiano = () => setPlayPiano(!playPiano)
 
   // Piano animation
   useEffect(() => {
@@ -31,7 +26,7 @@ const Piano = ({ nodes, material }) => {
     }
   }, [playPiano])
 
-  return <group onClick={() => { toggle(); togglePiano() }}>
+  return <group>
     {/* White Keys */}
     <group position={nodes.White_Keys000.position} ref={whiteKeys}>
       {Object.values(nodes)?.map((item, index) => {
