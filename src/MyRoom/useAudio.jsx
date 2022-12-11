@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react"
 
 const songs_info = [
-  { composer: "Beethoven", image: "./songs/Beethoven.jpg", url: "./songs/Beethoven_3rd.mp3" },
-  { composer: "Mozart", image: "./songs/Mozart.jpg", url: "./songs/TurkishMarch.mp3" },
-  { composer: "Javad Maroufi", image: "./songs/JavadMaroufi.jpg", url: "./songs/GoldenDreams.mp3" },
+  { composer: "Beethoven", image: "/songs/Beethoven.jpg", url: "/songs/Beethoven_3rd.mp3" },
+  { composer: "Mozart", image: "/songs/Mozart.jpg", url: "/songs/TurkishMarch.mp3" },
+  { composer: "Javad Maroufi", image: "/songs/JavadMaroufi.jpg", url: "/songs/GoldenDreams.mp3" },
 ]
 
 const songs = []

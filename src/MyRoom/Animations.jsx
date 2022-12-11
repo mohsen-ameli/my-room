@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import * as THREE from "three"
 import Chair from "./Chair"
 import Frames from "./Frames"
+import Ipad from "./IpadScreen"
 import IpadScreen from "./IpadScreen"
 import Piano from "./Piano"
 import useAudio from "./useAudio"
@@ -14,9 +15,6 @@ const Animations = ({ orbitControls }) => {
   const { nodes } = useGLTF("./Anim/AnimModel.glb")
   const animTexture = useTexture("./Anim/AnimBaked.png")
   animTexture.flipY = false
-
-  // Piano
-  const [playing, toggle, forward, backward, composer, image] = useAudio("./songs/Beethoven_3rd.mp3")
 
   // Fixing the encoding and updating the material
   useEffect(() => {
@@ -30,12 +28,35 @@ const Animations = ({ orbitControls }) => {
   return <group>
     {/* Frames */}
     <Frames nodes={nodes} material={material} orbitControls={orbitControls} />
+    <group>
+      {/* Frames */}
+      <mesh
+        geometry={nodes.Frame000.geometry}
+        material={material}
+        position={nodes.Frame000.position}
+      />
+      <mesh
+        geometry={nodes.Frame001.geometry}
+        material={material}
+        position={nodes.Frame001.position}
+      />
+      <mesh
+        geometry={nodes.Frame002.geometry}
+        material={material}
+        position={nodes.Frame002.position}
+      />
+      <mesh
+        geometry={nodes.Frame003.geometry}
+        material={material}
+        position={nodes.Frame003.position}
+      />
+    </group>
 
     {/* Chair */}
     <Chair nodes={nodes} material={material} />
 
     {/* Piano */}
-    <Piano nodes={nodes} material={material} playPiano={playing} />
+    <Piano nodes={nodes} material={material} />
 
     {/* Piano Tray */}
     <mesh
@@ -51,24 +72,6 @@ const Animations = ({ orbitControls }) => {
       position={nodes.LaptopScreen.position}
 
     />
-    {/* Ipad */}
-    <mesh
-      geometry={nodes.Ipad.geometry}
-      material={material}
-      position={nodes.Ipad.position}
-    >
-      <Html
-        transform
-        // occlude
-        position={[0.0055, 0.004, 0]}
-        rotation={[-1.58, 1.08, 1.58]}
-        distanceFactor={0.261}
-      >
-        <div className="w-full h-full cursor-default" onClick={e => e.stopPropagation()}>
-          <IpadScreen composer={composer} image={image} playing={playing} toggle={toggle} forward={forward} backward={backward} />
-        </div>
-      </Html>
-    </mesh>
 
     {/* Flower Pots */}
     <group>

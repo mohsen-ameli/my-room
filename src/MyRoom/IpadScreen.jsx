@@ -1,11 +1,16 @@
-const IpadScreen = ({ composer, image, playing, toggle, forward, backward }) => {
+import useAudio from "./useAudio"
+
+const IpadScreen = ({ setPianoplaying }) => {
+  const [playing, toggle, forward, backward, composer, image] = useAudio()
+
+  setPianoplaying(playing)
 
   return <div className="rounded-[6%] bg-sky-900 flex flex-col justify-center items-center select-none w-[500px] h-[350px] overflow-hidden">
     {/* Name */}
     <h2 className="font-bold font-serif">{composer}</h2>
 
     {/* Logo */}
-    <img className="max-w-[150px] rounded-lg my-2" src={image} alt="" />
+    <img className="max-w-[150px] rounded-lg my-2" src={image} alt=":(" />
 
     {/* Controls */}
     <div className="w-full flex gap-x-6 justify-center">
