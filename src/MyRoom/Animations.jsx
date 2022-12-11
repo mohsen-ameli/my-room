@@ -1,13 +1,9 @@
-import { Html, Image, MeshWobbleMaterial, useGLTF, useTexture } from "@react-three/drei"
-import { useControls } from "leva"
-import { useEffect, useState } from "react"
+import { useGLTF, useTexture } from "@react-three/drei"
+import { useEffect } from "react"
 import * as THREE from "three"
 import Chair from "./Chair"
 import Frames from "./Frames"
-import Ipad from "./IpadScreen"
-import IpadScreen from "./IpadScreen"
 import Piano from "./Piano"
-import useAudio from "./useAudio"
 
 const material = new THREE.MeshBasicMaterial({ side: THREE.DoubleSide })
 
