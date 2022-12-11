@@ -31,6 +31,13 @@ const Piano = ({ nodes, material }) => {
   }, [pianoPlaying])
 
   return <group>
+    {/* Piano Tray */}
+    <mesh
+      geometry={nodes.Piano_Tray.geometry}
+      material={material}
+      position={nodes.Piano_Tray.position}
+    />
+
     {/* Ipad */}
     <mesh
       geometry={nodes.Ipad.geometry}

@@ -19,14 +19,15 @@ const useAudio = () => {
   const [index, setIndex] = useState(0)
   const [playing, setPlaying] = useState(false)
 
+  // Global methods
   const toggle = () => setPlaying(!playing)
   const forward = () => (index + 1 < songs.length) ? setIndex(index + 1) : setIndex(0)
   const backward = () => (index - 1 >= 0) ? setIndex(index - 1) : setIndex(songs.length - 1)
+  const setVolume = (volume) => songs[index].volume = volume
 
+  // Local methods
   const play = i => songs[i]?.play()
   const pause = i => songs[i]?.pause()
-
-  const setVolume = (volume) => songs[index].volume = volume
 
   // Play and pause
   useEffect(() => {
@@ -53,7 +54,7 @@ const useAudio = () => {
   }, [index])
 
   useEffect(() => {
-    songs[index]?.addEventListener('ended', () => setPlaying(false))
+    songs[index]?.addEventListener('ended', () => forward())
     return () => {
       songs[index]?.removeEventListener('ended', () => setPlaying(false))
     }

@@ -3,6 +3,7 @@ import { useEffect } from "react"
 import * as THREE from "three"
 import Chair from "./Chair"
 import Frames from "./Frames"
+import Laptop from "./Laptop"
 import Piano from "./Piano"
 
 const material = new THREE.MeshBasicMaterial({ side: THREE.DoubleSide })
@@ -22,10 +23,11 @@ const Animations = ({ orbitControls }) => {
   }, [])
 
   return <group>
-    {/* Frames */}
+    {/* Animation frames */}
     <Frames nodes={nodes} material={material} orbitControls={orbitControls} />
+
+    {/* Picture frames */}
     <group>
-      {/* Frames */}
       <mesh
         geometry={nodes.Frame000.geometry}
         material={material}
@@ -54,20 +56,8 @@ const Animations = ({ orbitControls }) => {
     {/* Piano */}
     <Piano nodes={nodes} material={material} />
 
-    {/* Piano Tray */}
-    <mesh
-      geometry={nodes.Piano_Tray.geometry}
-      material={material}
-      position={nodes.Piano_Tray.position}
-    />
-
     {/* Laptop Screen */}
-    <mesh
-      geometry={nodes.LaptopScreen.geometry}
-      material={material}
-      position={nodes.LaptopScreen.position}
-
-    />
+    <Laptop nodes={nodes} material={material} />
 
     {/* Flower Pots */}
     <group>
