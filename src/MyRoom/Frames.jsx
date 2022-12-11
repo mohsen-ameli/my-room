@@ -20,6 +20,7 @@ export default function Frames({ q = new THREE.Quaternion(), p = new THREE.Vecto
     { position: nodes.Frame001.position, scale: [0.26, 0.36, 0.01], rotation: [0, Math.PI / 2, 0], url: pexel(325185) },
     { position: nodes.Frame002.position, scale: [0.33, 0.44, 0.01], rotation: [0, Math.PI / 2, 0], url: pexel(358574) },
     { position: nodes.Frame003.position, scale: [0.39, 0.31, 0.01], rotation: [0, Math.PI / 2, 0], url: pexel(358579) },
+    // { position: [nodes.Ipad.position.x + 0.02, nodes.Ipad.position.y, nodes.Ipad.position.z], scale: [0.39, 0.31, 0.01], rotation: [-1.58, 1.08, 1.58], url: pexel(358580) },
   ]
 
   const ref = useRef()
@@ -31,6 +32,7 @@ export default function Frames({ q = new THREE.Quaternion(), p = new THREE.Vecto
   // Animating the tween of the frames
   useEffect(() => {
     const duration = 2
+    // console.log(ref.current.getObjectByName(params?.id).parent)
     clicked.current = ref.current.getObjectByName(params?.id)
 
     // Frame was clicked
@@ -66,40 +68,23 @@ export default function Frames({ q = new THREE.Quaternion(), p = new THREE.Vecto
     }
   })
 
-  return (
-    <group>
-      {/* Images */}
-      <group
-        ref={ref}
-        onClick={e => { e.stopPropagation(); setLocation(clicked.current === e.object ? '/' : '/item/' + e.object.name) }}
-        onPointerMissed={() => setLocation('/')}
-      >
-        {images.map(props => <Frame key={props.url} {...props} />)}
-      </group>
+  const clickHandler = (e) => {
+    e.stopPropagation()
+    setLocation(clicked.current === e.object ? '/' : '/item/' + e.object.name)
+  }
 
-      {/* Frames */}
-      <mesh
-        geometry={nodes.Frame000.geometry}
-        material={material}
-        position={nodes.Frame000.position}
-      />
-      <mesh
-        geometry={nodes.Frame001.geometry}
-        material={material}
-        position={nodes.Frame001.position}
-      />
-      <mesh
-        geometry={nodes.Frame002.geometry}
-        material={material}
-        position={nodes.Frame002.position}
-      />
-      <mesh
-        geometry={nodes.Frame003.geometry}
-        material={material}
-        position={nodes.Frame003.position}
-      />
+  return <>
+    {/* Images */}
+    <group
+      ref={ref}
+      onClick={clickHandler}
+      onPointerMissed={() => setLocation('/')}
+    >
+      {images.map(props => <Frame key={props.url} {...props} />)}
     </group>
-  )
+
+    <OutsideFrame nodes={nodes} material={material} />
+  </>
 }
 
 function Frame({ url, ...props }) {
@@ -124,4 +109,30 @@ function Frame({ url, ...props }) {
       </mesh>
     </group>
   )
+}
+
+function OutsideFrame({ nodes, material }) {
+  return <group>
+    {/* Frames */}
+    <mesh
+      geometry={nodes.Frame000.geometry}
+      material={material}
+      position={nodes.Frame000.position}
+    />
+    <mesh
+      geometry={nodes.Frame001.geometry}
+      material={material}
+      position={nodes.Frame001.position}
+    />
+    <mesh
+      geometry={nodes.Frame002.geometry}
+      material={material}
+      position={nodes.Frame002.position}
+    />
+    <mesh
+      geometry={nodes.Frame003.geometry}
+      material={material}
+      position={nodes.Frame003.position}
+    />
+  </group>
 }

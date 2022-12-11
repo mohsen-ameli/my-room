@@ -23,7 +23,7 @@
     "wouter": "^2.9.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-scripts start BROWSER=none",
     "build": "react-scripts build"
   },
   "eslintConfig": {

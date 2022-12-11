@@ -1,4 +1,4 @@
-import { Html, MeshWobbleMaterial, useGLTF, useTexture } from "@react-three/drei"
+import { Html, Image, MeshWobbleMaterial, useGLTF, useTexture } from "@react-three/drei"
 import { useControls } from "leva"
 import { useEffect, useState } from "react"
 import * as THREE from "three"
@@ -11,12 +11,6 @@ import useAudio from "./useAudio"
 const material = new THREE.MeshBasicMaterial({ side: THREE.DoubleSide })
 
 const Animations = ({ orbitControls }) => {
-  const rotation = useControls({
-    x: { value: -1.58, min: -Math.PI, max: Math.PI, step: 0.01 },
-    y: { value: 1.08, min: -Math.PI, max: Math.PI, step: 0.01 },
-    z: { value: 1.58, min: -Math.PI, max: Math.PI, step: 0.01 },
-  })
-
   const { nodes } = useGLTF("./Anim/AnimModel.glb")
   const animTexture = useTexture("./Anim/AnimBaked.png")
   animTexture.flipY = false
@@ -33,9 +27,9 @@ const Animations = ({ orbitControls }) => {
     material.needsUpdate = true
   }, [])
 
-  return <>
+  return <group>
     {/* Frames */}
-    {/* <Frames nodes={nodes} material={material} orbitControls={orbitControls} /> */}
+    <Frames nodes={nodes} material={material} orbitControls={orbitControls} />
 
     {/* Chair */}
     <Chair nodes={nodes} material={material} />
@@ -65,13 +59,14 @@ const Animations = ({ orbitControls }) => {
     >
       <Html
         transform
-        occlude
+        // occlude
         position={[0.0055, 0.004, 0]}
-        // rotation={[-1.58, 1.09, 1.58]}
-        rotation={[rotation.x, rotation.y, rotation.z]}
-        scale={0.026}
+        rotation={[-1.58, 1.08, 1.58]}
+        distanceFactor={0.261}
       >
-        <IpadScreen composer={composer} image={image} playing={playing} toggle={toggle} forward={forward} backward={backward} />
+        <div className="w-full h-full cursor-default" onClick={e => e.stopPropagation()}>
+          <IpadScreen composer={composer} image={image} playing={playing} toggle={toggle} forward={forward} backward={backward} />
+        </div>
       </Html>
     </mesh>
 
@@ -101,7 +96,7 @@ const Animations = ({ orbitControls }) => {
         position={nodes.Pot003.position}
       />
     </group>
-  </>
+  </group>
 }
 
 export default Animations
