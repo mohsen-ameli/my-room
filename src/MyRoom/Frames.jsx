@@ -44,7 +44,7 @@ export default function Frames({ q = new THREE.Quaternion(), p = new THREE.Vecto
 
       // Setting the new position and rotation to go to
       clicked.current.parent.updateWorldMatrix(true, true)
-      clicked.current.parent.localToWorld(p.set(0, 0, 1))
+      clicked.current.parent.localToWorld(p.set(0, 0, 0.8))
       clicked.current.parent.getWorldQuaternion(q)
 
       // Snapping to the selected frame postion and rotation

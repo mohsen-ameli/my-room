@@ -10,6 +10,7 @@ const songs = []
 
 for (let i = 0; i < songs_info.length; i++) {
   songs[i] = new Audio(songs_info[i].url)
+  songs[i].volume = 0.5
 }
 
 let mounted = false
@@ -24,6 +25,8 @@ const useAudio = () => {
 
   const play = i => songs[i]?.play()
   const pause = i => songs[i]?.pause()
+
+  const setVolume = (volume) => songs[index].volume = volume
 
   // Play and pause
   useEffect(() => {
@@ -56,7 +59,7 @@ const useAudio = () => {
     }
   }, [])
 
-  return [playing, toggle, forward, backward, songs_info[index].composer, songs_info[index].image]
+  return [playing, toggle, forward, backward, setVolume, songs_info[index].composer, songs_info[index].image]
 }
 
 export default useAudio
