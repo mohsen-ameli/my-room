@@ -22,70 +22,66 @@ const Animations = ({ orbitControls }) => {
     material.needsUpdate = true
   }, [])
 
-  return <group>
-    {/* Animation frames */}
-    <Frames nodes={nodes} material={material} orbitControls={orbitControls} />
-
-    {/* Picture frames */}
+  return (
     <group>
-      <mesh
-        geometry={nodes.Frame000.geometry}
-        material={material}
-        position={nodes.Frame000.position}
-      />
-      <mesh
-        geometry={nodes.Frame001.geometry}
-        material={material}
-        position={nodes.Frame001.position}
-      />
-      <mesh
-        geometry={nodes.Frame002.geometry}
-        material={material}
-        position={nodes.Frame002.position}
-      />
-      <mesh
-        geometry={nodes.Frame003.geometry}
-        material={material}
-        position={nodes.Frame003.position}
-      />
+      {/* Animation frames */}
+      <Frames nodes={nodes} material={material} orbitControls={orbitControls} />
+
+      <Chair nodes={nodes} material={material} />
+
+      <Piano nodes={nodes} material={material} />
+
+      <Laptop nodes={nodes} material={material} />
+
+      {/* Picture frames */}
+      <group>
+        <mesh
+          geometry={nodes.Frame000.geometry}
+          material={material}
+          position={nodes.Frame000.position}
+        />
+        <mesh
+          geometry={nodes.Frame001.geometry}
+          material={material}
+          position={nodes.Frame001.position}
+        />
+        <mesh
+          geometry={nodes.Frame002.geometry}
+          material={material}
+          position={nodes.Frame002.position}
+        />
+        <mesh
+          geometry={nodes.Frame003.geometry}
+          material={material}
+          position={nodes.Frame003.position}
+        />
+      </group>
+
+      {/* Flower Pots */}
+      <group>
+        <mesh
+          geometry={nodes.Pot000.geometry}
+          material={material}
+          position={nodes.Pot000.position}
+        ></mesh>
+        <mesh
+          geometry={nodes.Pot001.geometry}
+          material={material}
+          position={nodes.Pot001.position}
+        />
+        <mesh
+          geometry={nodes.Pot002.geometry}
+          material={material}
+          position={nodes.Pot002.position}
+        />
+        <mesh
+          geometry={nodes.Pot003.geometry}
+          material={material}
+          position={nodes.Pot003.position}
+        />
+      </group>
     </group>
-
-    {/* Chair */}
-    <Chair nodes={nodes} material={material} />
-
-    {/* Piano */}
-    <Piano nodes={nodes} material={material} />
-
-    {/* Laptop Screen */}
-    <Laptop nodes={nodes} material={material} />
-
-    {/* Flower Pots */}
-    <group>
-      <mesh
-        geometry={nodes.Pot000.geometry}
-        material={material}
-        position={nodes.Pot000.position}
-      >
-        {/* <boxGeometry /> */}
-        {/* <MeshWobbleMaterial color="red" factor={1} /> */}
-      </mesh>
-      <mesh
-        geometry={nodes.Pot001.geometry}
-        material={material}
-        position={nodes.Pot001.position}
-      />
-      <mesh
-        geometry={nodes.Pot002.geometry}
-        material={material}
-        position={nodes.Pot002.position}
-      />
-      <mesh
-        geometry={nodes.Pot003.geometry}
-        material={material}
-        position={nodes.Pot003.position}
-      />
-    </group>
-  </group>
+  )
 }
 
 export default Animations

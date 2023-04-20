@@ -1,17 +1,13 @@
-import { Sparkles } from "@react-three/drei";
+import { Sparkles } from "@react-three/drei"
 
 const Background = () => {
-  return <>
-    <color args={["black"]} attach="background" />
+  return (
+    <>
+      <color args={["black"]} attach="background" />
 
-    {/* Some sparkles */}
-    <Sparkles
-      size={10}
-      scale={[20, 20, 20]}
-      speed={0.4}
-      count={100}
-    />
-  </>
+      <Sparkles size={10} scale={[20, 20, 20]} speed={0.4} count={100} />
+    </>
+  )
 }
 
-export default Background;
+export default Background

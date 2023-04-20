@@ -12,13 +12,15 @@ const Chair = ({ nodes, material }) => {
     chair.current.rotation.y = Math.sin(time / 4) - 0.5
   })
 
-  return <mesh
-    geometry={nodes.ChairTop.geometry}
-    material={material}
-    position={nodes.ChairTop.position}
-    rotation={nodes.ChairTop.rotation}
-    ref={chair}
-  />
+  return (
+    <mesh
+      geometry={nodes.ChairTop.geometry}
+      material={material}
+      position={nodes.ChairTop.position}
+      rotation={nodes.ChairTop.rotation}
+      ref={chair}
+    />
+  )
 }
 
 export default Chair

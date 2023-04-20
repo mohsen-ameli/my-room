@@ -2,7 +2,7 @@ import { OrbitControls } from "@react-three/drei"
 import { forwardRef } from "react"
 
 const Controls = forwardRef((props, ref) => {
-  return <>
+  return (
     <OrbitControls
       makeDefault
       position={[0, 2, 0]}
@@ -17,7 +17,7 @@ const Controls = forwardRef((props, ref) => {
       ref={ref}
       {...props}
     />
-  </>
+  )
 })
 
 export default Controls

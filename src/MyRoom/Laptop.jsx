@@ -1,7 +1,7 @@
-import { Html } from "@react-three/drei";
+import { Html } from "@react-three/drei"
 // import { useControls } from "leva";
-import getUuidByString from "uuid-by-string";
-import { useLocation } from "wouter";
+import getUuidByString from "uuid-by-string"
+import { useLocation } from "wouter"
 
 const Laptop = ({ nodes, material }) => {
   // const position = useControls("position", {
@@ -27,34 +27,47 @@ const Laptop = ({ nodes, material }) => {
     setLocation(`/item/${name}`)
   }
 
-  return <mesh
-    geometry={nodes.LaptopScreen.geometry}
-    material={material}
-    position={nodes.LaptopScreen.position}
-  >
-    <Html
-      transform
-      // occlude
-      position={[-0.070, 0.375, 0.365]}
-      rotation={[-1.58, 0.89, 1.575]}
-      distanceFactor={0.146}
+  return (
+    <mesh
+      geometry={nodes.LaptopScreen.geometry}
+      material={material}
+      position={nodes.LaptopScreen.position}
     >
-      <div className="w-full h-full cursor-default" onClick={handleClick}>
-        {/* Pointer cursor when not zoomed in, and default when zoomed in */}
-        <div className={(location === "/" ? "cursor-pointer z-10" : "-z-10") + " absolute top-0 left-0 w-full h-full"}></div>
+      <Html
+        transform
+        // occlude
+        position={[-0.07, 0.375, 0.365]}
+        rotation={[-1.58, 0.89, 1.575]}
+        distanceFactor={0.146}
+      >
+        <div className="w-full h-full cursor-default" onClick={handleClick}>
+          {/* Pointer cursor when not zoomed in, and default when zoomed in */}
+          <div
+            className={
+              (location === "/" ? "cursor-pointer z-10" : "-z-10") +
+              " absolute top-0 left-0 w-full h-full"
+            }
+          ></div>
 
-        <LaptopScreen />
-      </div>
-    </Html>
-  </mesh>
+          <LaptopScreen />
+        </div>
+      </Html>
+    </mesh>
+  )
 }
 
 const LaptopScreen = () => {
-  return <>
-    <div>
-      <iframe src="https://www.mohsenameli.com/" className="w-[1400px] h-[810px]"></iframe>
-    </div>
-  </>
+  return (
+    <>
+      <div>
+        <iframe
+          src="https://www.mohsenameli.com/"
+          className="w-[1400px] h-[810px]"
+          title="portfolio"
+        ></iframe>
+      </div>
+    </>
+  )
 }
 
-export default Laptop;
+export default Laptop

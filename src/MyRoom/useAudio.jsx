@@ -1,9 +1,21 @@
 import { useEffect, useState } from "react"
 
 const songs_info = [
-  { composer: "Beethoven", image: "/songs/Beethoven.jpg", url: "/songs/Beethoven_3rd.mp3" },
-  { composer: "Mozart", image: "/songs/Mozart.jpg", url: "/songs/TurkishMarch.mp3" },
-  { composer: "Javad Maroufi", image: "/songs/JavadMaroufi.jpg", url: "/songs/GoldenDreams.mp3" },
+  {
+    composer: "Beethoven",
+    image: "/songs/Beethoven.jpg",
+    url: "/songs/Beethoven_3rd.mp3",
+  },
+  {
+    composer: "Mozart",
+    image: "/songs/Mozart.jpg",
+    url: "/songs/TurkishMarch.mp3",
+  },
+  {
+    composer: "Javad Maroufi",
+    image: "/songs/JavadMaroufi.jpg",
+    url: "/songs/GoldenDreams.mp3",
+  },
 ]
 
 const songs = []
@@ -21,9 +33,11 @@ const useAudio = () => {
 
   // Global methods
   const toggle = () => setPlaying(!playing)
-  const forward = () => (index + 1 < songs.length) ? setIndex(index + 1) : setIndex(0)
-  const backward = () => (index - 1 >= 0) ? setIndex(index - 1) : setIndex(songs.length - 1)
-  const setVolume = (volume) => songs[index].volume = volume
+  const forward = () =>
+    index + 1 < songs.length ? setIndex(index + 1) : setIndex(0)
+  const backward = () =>
+    index - 1 >= 0 ? setIndex(index - 1) : setIndex(songs.length - 1)
+  const setVolume = volume => (songs[index].volume = volume)
 
   // Local methods
   const play = i => songs[i]?.play()
@@ -38,7 +52,7 @@ const useAudio = () => {
   useEffect(() => {
     // Making sure we do stuff once everything is loaded
     if (mounted) {
-      // Getting the song to be resetted
+      // Getting the song to be reset
       for (let i = 0; i < songs.length; i++) {
         pause(i)
         songs[i].currentTime = 0
@@ -54,13 +68,21 @@ const useAudio = () => {
   }, [index])
 
   useEffect(() => {
-    songs[index]?.addEventListener('ended', () => forward())
+    songs[index]?.addEventListener("ended", () => forward())
     return () => {
-      songs[index]?.removeEventListener('ended', () => setPlaying(false))
+      songs[index]?.removeEventListener("ended", () => setPlaying(false))
     }
   }, [])
 
-  return [playing, toggle, forward, backward, setVolume, songs_info[index].composer, songs_info[index].image]
+  return [
+    playing,
+    toggle,
+    forward,
+    backward,
+    setVolume,
+    songs_info[index].composer,
+    songs_info[index].image,
+  ]
 }
 
 export default useAudio
