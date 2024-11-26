@@ -1,7 +1,7 @@
 import { useGLTF } from "@react-three/drei"
 
 const Emission = () => {
-  const emissionModel = useGLTF("./EmissionModel.glb")
+  const emissionModel = useGLTF("/models/EmissionModel.glb")
 
   return (
     <>

@@ -2,11 +2,10 @@ import { useGLTF, useTexture } from "@react-three/drei"
 import { DoubleSide } from "three"
 
 const Primitives = () => {
-  const bigModel = useGLTF("./Big/BigModel.glb")
-  const smallModel = useGLTF("./Small/SmallModel.glb")
-
-  const bigTexture = useTexture("./Big/BigBaked.png")
-  const smallTexture = useTexture("./Small/SmallBaked.png")
+  const bigModel = useGLTF("/models/BigModel.glb")
+  const smallModel = useGLTF("/models/SmallModel.glb")
+  const bigTexture = useTexture("/images/BigBaked.jpg")
+  const smallTexture = useTexture("/images/SmallBaked.jpg")
   bigTexture.flipY = false
   smallTexture.flipY = false
 

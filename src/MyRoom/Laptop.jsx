@@ -3,7 +3,7 @@ import { Html } from "@react-three/drei"
 import getUuidByString from "uuid-by-string"
 import { useLocation } from "wouter"
 
-const Laptop = ({ nodes, material }) => {
+const Laptop = ({ nodes, texture }) => {
   // const position = useControls("position", {
   //   x: { value: -0.070, min: -0.500, max: 0.500, step: 0.001 },
   //   y: { value: 0.375, min: -0.500, max: 0.500, step: 0.001 },
@@ -30,9 +30,9 @@ const Laptop = ({ nodes, material }) => {
   return (
     <mesh
       geometry={nodes.LaptopScreen.geometry}
-      material={material}
       position={nodes.LaptopScreen.position}
     >
+      <meshBasicMaterial map={texture} />
       <Html
         transform
         // occlude
@@ -49,24 +49,16 @@ const Laptop = ({ nodes, material }) => {
             }
           ></div>
 
-          <LaptopScreen />
+          <div>
+            <iframe
+              src="https://www.mohsenameli.com/"
+              className="w-[1400px] h-[810px]"
+              title="portfolio"
+            />
+          </div>
         </div>
       </Html>
     </mesh>
-  )
-}
-
-const LaptopScreen = () => {
-  return (
-    <>
-      <div>
-        <iframe
-          src="https://www.mohsenameli.com/"
-          className="w-[1400px] h-[810px]"
-          title="portfolio"
-        ></iframe>
-      </div>
-    </>
   )
 }
 

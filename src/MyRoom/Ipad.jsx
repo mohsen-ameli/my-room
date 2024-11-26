@@ -23,7 +23,6 @@ const Ipad = props => {
       distanceFactor={0.261}
     >
       <div className="w-full h-full cursor-default" onClick={handleClick}>
-        {/* Pointer cursor when not zoomed in, and default when zoomed in */}
         <div
           className={
             (location === "/" ? "cursor-pointer z-10" : "-z-10") +
@@ -41,12 +40,8 @@ const Ipad = props => {
 const DEFAULT_VOLUME = 0.5
 
 const IpadScreen = props => {
-  // Volume controller
   const [volume, setVol] = useState(DEFAULT_VOLUME)
-
-  // Media player
-  const [playing, toggle, forward, backward, setVolume, composer, image] =
-    useAudio()
+  const [playing, toggle, forward, backward, setVolume, composer, image] = useAudio()
 
   // Setting the volume, according to the "state volume"
   setVolume(volume?.target?.value ? volume.target.value : volume)
@@ -61,7 +56,7 @@ const IpadScreen = props => {
       <h2 className="font-bold font-serif">{composer}</h2>
 
       {/* Logo */}
-      <img className="max-w-[125px] rounded-lg my-2" src={image} alt=":(" />
+      <img className="h-[125px] rounded-lg my-2" src={image} alt="Album Art" /> 
 
       {/* Volume */}
       <div className="flex items-center gap-x-3 w-3/4">

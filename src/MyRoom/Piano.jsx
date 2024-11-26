@@ -2,7 +2,7 @@ import gsap from "gsap"
 import { useEffect, useRef, useState } from "react"
 import Ipad from "./Ipad"
 
-const Piano = ({ nodes, material }) => {
+const Piano = ({ nodes, texture }) => {
   const whiteKeys = useRef()
   const blackKeys = useRef()
 
@@ -49,16 +49,17 @@ const Piano = ({ nodes, material }) => {
       {/* Piano Tray */}
       <mesh
         geometry={nodes.Piano_Tray.geometry}
-        material={material}
         position={nodes.Piano_Tray.position}
-      />
+      >
+        <meshBasicMaterial map={texture} />
+      </mesh>
 
       {/* Ipad */}
       <mesh
         geometry={nodes.Ipad.geometry}
-        material={material}
         position={nodes.Ipad.position}
       >
+        <meshBasicMaterial map={texture} />
         <Ipad setPianoPlaying={setPianoPlaying} />
       </mesh>
 
@@ -67,7 +68,9 @@ const Piano = ({ nodes, material }) => {
         {Object.values(nodes)?.map((item, index) => {
           if (item.name.includes("White_Keys")) {
             return (
-              <mesh key={index} geometry={item.geometry} material={material} />
+              <mesh key={index} geometry={item.geometry}>
+                <meshBasicMaterial map={texture} />
+              </mesh>
             )
           }
           return null
@@ -79,7 +82,9 @@ const Piano = ({ nodes, material }) => {
         {Object.values(nodes)?.map((item, index) => {
           if (item.name.includes("Black_Key")) {
             return (
-              <mesh key={index} geometry={item.geometry} material={material} />
+              <mesh key={index} geometry={item.geometry}>
+                <meshBasicMaterial map={texture} />
+              </mesh>
             )
           }
           return null

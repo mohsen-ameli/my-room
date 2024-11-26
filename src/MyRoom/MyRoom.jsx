@@ -6,9 +6,7 @@ const MyRoom = ({ orbitControls }) => {
   return (
     <group position={[0, -1.5, 0]}>
       <Emission />
-
       <Primitives />
-
       <Animations orbitControls={orbitControls} />
     </group>
   )

@@ -9,76 +9,71 @@ import Piano from "./Piano"
 const material = new THREE.MeshBasicMaterial({ side: THREE.DoubleSide })
 
 const Animations = ({ orbitControls }) => {
-  const { nodes } = useGLTF("./Anim/AnimModel.glb")
-  const animTexture = useTexture("./Anim/AnimBaked.png")
-  animTexture.flipY = false
-
-  // Fixing the encoding and updating the material
-  useEffect(() => {
-    animTexture.encoding = THREE.sRGBEncoding
-    animTexture.needsUpdate = true
-
-    material.map = animTexture
-    material.needsUpdate = true
-  }, [])
+  const { nodes } = useGLTF("/models/AnimModel.glb")
+  const texture = useTexture("/images/AnimBaked.jpg")
+  texture.flipY = false
 
   return (
     <group>
-      {/* Animation frames */}
-      <Frames nodes={nodes} material={material} orbitControls={orbitControls} />
-
-      <Chair nodes={nodes} material={material} />
-
-      <Piano nodes={nodes} material={material} />
-
-      <Laptop nodes={nodes} material={material} />
+      <Frames nodes={nodes} orbitControls={orbitControls} />
+      <Chair nodes={nodes} texture={texture} />
+      <Piano nodes={nodes} texture={texture} />
+      <Laptop nodes={nodes} texture={texture} />
 
       {/* Picture frames */}
       <group>
         <mesh
           geometry={nodes.Frame000.geometry}
-          material={material}
           position={nodes.Frame000.position}
-        />
+        >
+          <meshBasicMaterial map={texture} />
+        </mesh>
         <mesh
           geometry={nodes.Frame001.geometry}
-          material={material}
           position={nodes.Frame001.position}
-        />
+        >
+          <meshBasicMaterial map={texture} />
+        </mesh>
         <mesh
           geometry={nodes.Frame002.geometry}
-          material={material}
           position={nodes.Frame002.position}
-        />
+        >
+          <meshBasicMaterial map={texture} />
+        </mesh>
         <mesh
           geometry={nodes.Frame003.geometry}
-          material={material}
           position={nodes.Frame003.position}
-        />
+        >
+          <meshBasicMaterial map={texture} />
+        </mesh>
       </group>
 
       {/* Flower Pots */}
       <group>
         <mesh
           geometry={nodes.Pot000.geometry}
-          material={material}
           position={nodes.Pot000.position}
-        ></mesh>
+        >
+          <meshBasicMaterial map={texture} />
+        </mesh>
         <mesh
           geometry={nodes.Pot001.geometry}
-          material={material}
           position={nodes.Pot001.position}
-        />
+        >
+          <meshBasicMaterial map={texture} />
+        </mesh>
         <mesh
           geometry={nodes.Pot002.geometry}
-          material={material}
           position={nodes.Pot002.position}
-        />
+        >
+          <meshBasicMaterial map={texture} />
+        </mesh>
         <mesh
           geometry={nodes.Pot003.geometry}
-          material={material}
           position={nodes.Pot003.position}
-        />
+        >
+          <meshBasicMaterial map={texture} />
+        </mesh>
       </group>
     </group>
   )
