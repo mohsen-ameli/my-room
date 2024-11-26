@@ -23,7 +23,7 @@ const Experience = () => {
       }}
       onCreated={({ camera }) => setCamera(camera)}
     >
-      <Perf position='bottom-right' />
+      {/* <Perf position='bottom-right' /> */}
       <Controls ref={orbitRef} />
       <color args={["black"]} attach="background" />
       <Sparkles size={10} scale={[20, 20, 20]} speed={0.4} count={100} />

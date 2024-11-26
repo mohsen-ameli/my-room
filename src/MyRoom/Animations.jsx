@@ -1,12 +1,8 @@
 import { useGLTF, useTexture } from "@react-three/drei"
-import { useEffect } from "react"
-import * as THREE from "three"
 import Chair from "./Chair"
 import Frames from "./Frames"
 import Laptop from "./Laptop"
 import Piano from "./Piano"
-
-const material = new THREE.MeshBasicMaterial({ side: THREE.DoubleSide })
 
 const Animations = ({ orbitControls }) => {
   const { nodes } = useGLTF("/models/AnimModel.glb")
